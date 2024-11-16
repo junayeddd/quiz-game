@@ -1,0 +1,13 @@
+2
+What is the capital of Australia?
+Sydney
+Canberra
+Melbourne
+Darwin
+B
+Which planet is known as the dwarf planet?
+Earth
+Mars
+Jupiter
+Pluto
+D
