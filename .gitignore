@@ -1,0 +1,9 @@
+*.d
+
+*.o
+
+*.exe
+Makefile
+
+*.un~
+*~
