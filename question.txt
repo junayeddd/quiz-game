@@ -1,13 +1,37 @@
-2
 What is the capital of Australia?
 Sydney
 Canberra
 Melbourne
 Darwin
 B
-Which planet is known as the dwarf planet?
-Earth
-Mars
-Jupiter
-Pluto
+What is the memory size of this array: "float arr[80]"
+80
+800
+32
+320
 D
+What is the name of our Lab Instructor?
+Rejuana Rahman
+Afnan Islam Mim
+Mim Rahman
+Afnan Sabid
+B
+Who is the Greek God of CSE115.02?
+Azizul Kuddus Shiam
+Zahid Hossain Raju
+Ayushman Shaha
+Mashrafi Mucktadi
+C
+How many "junayeds" are in CSE115.02?
+1
+0
+2
+3
+C
+Which "junayed" has the highest amount of merit based scholarship?
+Ahmed Junayed 
+Ahmed Zunayed
+Junaid Sadman
+Junaid Islam Arman
+B
+
