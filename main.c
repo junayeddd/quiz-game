@@ -15,11 +15,9 @@ typedef struct {
 
 // declaring functions
 int mainMenu();
-int starGame();
+int startGame();
+int saveScore(int s, int t);
 
-/* 
-  saveScore();
-*/
 
 Question questions[MAX_QUES];
 
@@ -57,7 +55,8 @@ int main(){
 
 	return 0;
 }
-void startGame(){
+
+int startGame(){
 	printf("\n\nYou will be asked %d questions!\n\n", MAX_QUES);
 
 	int i, score = 0;
@@ -85,9 +84,51 @@ void startGame(){
 
 	}
 
-	printf("Quiz is finished. Your score: %d/%d", score, MAX_QUES);	
+
+	// Show and save scores in a file
+	printf("\n\nQuiz is finished. Your score: %d/%d", score, MAX_QUES);	
+	saveScore(score, MAX_QUES);
+	printf("\nScore saved in score.txt file!");
+
+	
+
+	// Retry the quiz option
+	printf("\n\n\n");
+	printf("(1) Retry Game\n");
+	printf("(2) Main Menu\n");
+
+	printf("\nEnter your choice: ");
+	int flag = 0;
+	scanf("%d", &flag);
+	printf("\n");
+	
+	if(flag == 1){
+		printf("\n\nRestarting game.....");
+		startGame();
+		
+	}
+	else if(flag == 2){
+		printf("\n\nReturning to mainmenu.....");
+		mainMenu();
+	}
+	else{
+		printf("\nEnter a valid option!");
+		return 1;
+	}
 
 
+}
+
+int saveScore(int s, int t){
+	FILE *fp = fopen("score.txt", "a");
+	if(fp == NULL){
+		printf("score.txt File not opened!");
+		return 1;
+	}
+
+	fprintf(fp, "%d/%d\n", s, t);
+
+	fclose(fp);
 }
 
 
@@ -125,5 +166,4 @@ int mainMenu(){
 		return 1;
 	}
 
-}
-
+};
