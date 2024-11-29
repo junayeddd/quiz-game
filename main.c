@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
-
+// DONOT CHANGE THIS VALUES WITHOUT DISCUSSING!!
 #define MAX_QUES 6
 #define MAX_OPTIONS 4
 
@@ -12,21 +13,19 @@ typedef struct {
 	char correctAns;
 } Question;
 
-// dealaring functions
+// declaring functions
 int mainMenu();
 int starGame();
 
-/* loadQuestions(struct, file);
- * startGame();
- * saveScore();
+/* 
+  saveScore();
 */
+
+Question questions[MAX_QUES];
 
 int main(){
 	
-
-	Question questions[MAX_QUES];
-	// int *q = questions;
-
+	// Load Questions in the structure array
 	FILE *fp = fopen("question.txt", "r");
 	if (fp == NULL)
 	{
@@ -38,7 +37,7 @@ int main(){
 	for ( i = 0; i < MAX_QUES; i++)
 	{	
 		fgets(questions[i].question, 256, fp);
-		questions[i].question[strcspn(questions[i].question, "\n")] = '\0';
+		questions[i].question[strcspn(questions[i].question, "\n")] = '\0'; 
 
 		for ( j = 0; j < MAX_OPTIONS; j++)
 		{
@@ -46,7 +45,7 @@ int main(){
 			questions[i].option[j][strcspn(questions[i].option[j], "\n")] = '\0';
 		}
 		
-		// fgets(&questions[i].correctAns, 1, fp);
+		
 		fscanf(fp, "%c\n", &questions[i].correctAns);
 
 	}
@@ -54,8 +53,6 @@ int main(){
 	// Display Main Menu
 	mainMenu();
 
-
-	
 	fclose(fp);
 
 	return 0;
@@ -63,6 +60,32 @@ int main(){
 void startGame(){
 	printf("\n\nYou will be asked %d questions!\n\n", MAX_QUES);
 
+	int i, score = 0;
+	for ( i = 0; i < MAX_QUES; i++)
+	{
+		printf("\n%d. %s\n", i+1, questions[i].question);
+		printf("A) %s\n", questions[i].option[0]);
+		printf("B) %s\n", questions[i].option[1]);
+		printf("C) %s\n", questions[i].option[2]);
+		printf("D) %s\n", questions[i].option[3]);
+
+		char ans;
+
+		printf("Your answer: ");
+		scanf(" %c", &ans);
+
+
+		if(toupper(ans) == questions[i].correctAns){
+			printf("\nCorrect answer!\n");
+			score++;
+		}
+		else{
+			printf("\nWrong answer! Correct answer is %c\n", questions[i].correctAns);
+		}
+
+	}
+
+	printf("Quiz is finished. Your score: %d/%d", score, MAX_QUES);	
 
 
 }

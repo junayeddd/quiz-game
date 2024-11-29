@@ -12,7 +12,7 @@ What is the memory size of this array: "float arr[80]"
 D
 What is the name of our Lab Instructor?
 Rejuana Rahman
-Afnan Islam Mim
+Afnan Islam Mimya
 Mim Rahman
 Afnan Sabid
 B
@@ -27,7 +27,7 @@ How many "junayeds" are in CSE115.02?
 0
 2
 3
-C
+D
 Which "junaid" has the highest amount of merit based scholarship?
 Ahmed Junayed 
 Ahmed Zunayed
