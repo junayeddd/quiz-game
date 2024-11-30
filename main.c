@@ -1,3 +1,5 @@
+/* ADD MORE QUESTIONS IN questions.txt AND IMPLEMENT THE USE OF POINTERS IN THIS CODE BASE BY TOMORROW */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
