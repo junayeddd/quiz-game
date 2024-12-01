@@ -6,7 +6,7 @@
 #include <ctype.h>
 
 // DONOT CHANGE THIS VALUES WITHOUT DISCUSSING!!
-#define MAX_QUES 6
+#define MAX_QUES 5
 #define MAX_OPTIONS 4
 
 typedef struct {
