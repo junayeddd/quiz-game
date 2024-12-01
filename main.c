@@ -18,10 +18,12 @@ typedef struct {
 // declaring functions
 int mainMenu();
 int startGame();
-int saveScore(int s, int t);
+int saveScore(int *s, int t);
 
-
+// Derclare the array structure and the pointer to that array
 Question questions[MAX_QUES];
+Question *q = questions;
+
 
 int main(){
 	
@@ -36,17 +38,17 @@ int main(){
 	int i, j;
 	for ( i = 0; i < MAX_QUES; i++)
 	{	
-		fgets(questions[i].question, 256, fp);
-		questions[i].question[strcspn(questions[i].question, "\n")] = '\0'; 
+		fgets((q+i)->question, 256, fp);
+		(q+i)->question[strcspn((q+i)->question, "\n")] = '\0'; 
 
 		for ( j = 0; j < MAX_OPTIONS; j++)
 		{
-			fgets(questions[i].option[j], 50, fp);
-			questions[i].option[j][strcspn(questions[i].option[j], "\n")] = '\0';
+			fgets((q+i)->option[j], 50, fp);
+			(q+i)->option[j][strcspn((q+i)->option[j], "\n")] = '\0';
 		}
 		
 		
-		fscanf(fp, "%c\n", &questions[i].correctAns);
+		fscanf(fp, "%c\n", &(q+i)->correctAns);
 
 	}
 	
@@ -64,11 +66,11 @@ int startGame(){
 	int i, score = 0;
 	for ( i = 0; i < MAX_QUES; i++)
 	{
-		printf("\n%d. %s\n", i+1, questions[i].question);
-		printf("A) %s\n", questions[i].option[0]);
-		printf("B) %s\n", questions[i].option[1]);
-		printf("C) %s\n", questions[i].option[2]);
-		printf("D) %s\n", questions[i].option[3]);
+		printf("\n%d. %s\n", i+1, (q+i)->question);
+		printf("A) %s\n", (q+i)->option[0]);
+		printf("B) %s\n", (q+i)->option[1]);
+		printf("C) %s\n", (q+i)->option[2]);
+		printf("D) %s\n", (q+i)->option[3]);
 
 		char ans;
 
@@ -76,12 +78,12 @@ int startGame(){
 		scanf(" %c", &ans);
 
 
-		if(toupper(ans) == questions[i].correctAns){
+		if(toupper(ans) == (q+i)->correctAns){
 			printf("\nCorrect answer!\n");
 			score++;
 		}
 		else{
-			printf("\nWrong answer! Correct answer is %c\n", questions[i].correctAns);
+			printf("\nWrong answer! Correct answer is %c\n", (q+i)->correctAns);
 		}
 
 	}
@@ -89,7 +91,7 @@ int startGame(){
 
 	// Show and save scores in a file
 	printf("\n\nQuiz is finished. Your score: %d/%d", score, MAX_QUES);	
-	saveScore(score, MAX_QUES);
+	saveScore(&score, MAX_QUES);
 	printf("\nScore saved in score.txt file!");
 
 	
@@ -121,14 +123,14 @@ int startGame(){
 
 }
 
-int saveScore(int s, int t){
+int saveScore(int *s, int t){
 	FILE *fp = fopen("score.txt", "a");
 	if(fp == NULL){
 		printf("score.txt File not opened!");
 		return 1;
 	}
 
-	fprintf(fp, "%d/%d\n", s, t);
+	fprintf(fp, "%d/%d\n", *s, t);
 
 	fclose(fp);
 }
